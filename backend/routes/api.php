@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ConferenceController;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\NotificationController;
+use Illuminate\Support\Facades\Broadcast;
+
+
+
+
 
 // Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 //     return $request->user();
@@ -61,3 +67,20 @@ Route::get('/submission/{id}/download', [SubmissionController::class, 'download'
 
 
 Route::get('/conference/{slug}', [ConferenceController::class, 'showBySlug']);
+
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/notifications', [NotificationController::class, 'index']);
+});
+
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    // Change this line
+    Route::patch('/notifications/{notification}/read', [NotificationController::class, 'markAsRead']);
+});
+
+
+
+

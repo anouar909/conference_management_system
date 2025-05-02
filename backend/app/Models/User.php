@@ -62,4 +62,12 @@ class User extends Authenticatable implements MustVerifyEmail
             'conference_id'
         )->withPivot('role', 'role_status')->withTimestamps();
     }
+
+public function notifications()
+{
+    return $this->belongsToMany(Notification::class)
+        ->withPivot('read_at')
+        ->withTimestamps();
+}
+
 }

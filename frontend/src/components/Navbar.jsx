@@ -4,6 +4,7 @@ import { Bell, UserCircle, LogOut, MailWarning } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { axiosClient } from "@/utils/axios-client";
+import NotificationBell from "./NotificationBell";
 
 const Navbar = () => {
     const { user, setUser, setToken } = useAuthContext();
@@ -45,11 +46,7 @@ const Navbar = () => {
 
             {/* Right Section */}
             <div className="flex gap-5 items-center">
-                {/* Notification Bell */}
-                <div className="relative">
-                    <div className="absolute -top-2 -right-2 w-4 h-4 bg-violet-500 rounded-full flex justify-center items-center text-xs font-light text-gray-100">1</div>
-                    <Bell size={22} />
-                </div>
+                <NotificationBell />
 
                 {/* 🔥 Logout Icon with Click */}
                 <button onClick={handleLogout}>
